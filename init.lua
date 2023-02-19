@@ -493,5 +493,14 @@ cmp.setup {
   },
 }
 
+vim.keymap.set('n', '<Home>', function()
+    local _,c = unpack(vim.api.nvim_win_get_cursor(0))
+    vim.cmd('normal! ^')
+    local _,c1 = unpack(vim.api.nvim_win_get_cursor(0))
+    if c == c1 then
+        vim.cmd('normal! 0')
+    end
+end, { desc = 'jump to start of line or first char in line' })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
