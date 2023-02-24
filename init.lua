@@ -493,6 +493,8 @@ cmp.setup {
   },
 }
 
+-- my own additions start here
+
 vim.keymap.set('n', '<Home>', function()
     local _,c = unpack(vim.api.nvim_win_get_cursor(0))
     vim.cmd('normal! ^')
@@ -501,6 +503,9 @@ vim.keymap.set('n', '<Home>', function()
         vim.cmd('normal! 0')
     end
 end, { desc = 'jump to start of line or first char in line' })
+
+vim.keymap.set('n', '<C-S>', ':w<CR>', { silent = true, desc = 'Save with ctrl + s in normal mode' })
+vim.keymap.set('i', '<C-S>', '<Esc>:w<CR>', { silent = true, desc = 'Save with ctrl + s in insert mode' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
