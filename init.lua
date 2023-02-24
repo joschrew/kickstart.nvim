@@ -506,6 +506,8 @@ end, { desc = 'jump to start of line or first char in line' })
 
 vim.keymap.set('n', '<C-S>', ':w<CR>', { silent = true, desc = 'Save with ctrl + s in normal mode' })
 vim.keymap.set('i', '<C-S>', '<Esc>:w<CR>', { silent = true, desc = 'Save with ctrl + s in insert mode' })
+vim.keymap.set('n', '<leader>y', '"+y', { desc = 'copy to clipboard' })
+vim.keymap.set('n', '<leader>p', '"+p', { desc = 'paste from clipboard' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
