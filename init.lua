@@ -509,5 +509,16 @@ vim.keymap.set('i', '<C-S>', '<Esc>:w<CR>', { silent = true, desc = 'Save with c
 vim.keymap.set('n', '<leader>y', '"+y', { desc = 'copy to clipboard' })
 vim.keymap.set('n', '<leader>p', '"+p', { desc = 'paste from clipboard' })
 
+-- remove trailing whitespace
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*" },
+    callback = function()
+      local pos = vim.api.nvim_win_get_cursor(0)
+      vim.cmd([[%s/\s\+$//e]])
+      vim.api.nvim_win_set_cursor(0, pos)
+    end
+})
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
