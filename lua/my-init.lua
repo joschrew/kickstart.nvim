@@ -25,3 +25,5 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- search with leader g and f in addition to leader sg and sf
 vim.keymap.set('n', '<leader>g', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep 2' })
 vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles 2' })
+
+vim.o.colorcolumn="101"
