@@ -2,4 +2,30 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  -- {
+  --   'sainnhe/everforest',
+  --   config = function()
+  --     vim.cmd.colorscheme 'everforest'
+  --     vim.g.everforest_background = 'hard'
+  --   end
+  -- },
+  -- {
+  --   'savq/melange-nvim',
+  --   config = function()
+  --     vim.cmd.colorscheme 'melange'
+  --   end
+  -- },
+  -- {
+  --   'rmehri01/onenord.nvim',
+  --   config = function()
+  --     vim.cmd.colorscheme 'onenord'
+  --   end
+  -- },
+  -- { -- Theme inspired by Atom
+  --   'pappasam/papercolor-theme-slim',
+  --   config = function()
+  --     vim.cmd.colorscheme 'PaperColorSlim'
+  --   end,
+  -- },
+}
