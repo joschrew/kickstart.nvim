@@ -119,6 +119,19 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
+  -- {
+  --   'sainnhe/everforest',
+  --   config = function()
+  --     vim.cmd.colorscheme 'everforest'
+  --     vim.g.everforest_background = 'hard'
+  --   end
+  -- },
+  -- {
+  --   'savq/melange-nvim',
+  --   config = function()
+  --     vim.cmd.colorscheme 'melange'
+  --   end
+  -- },
 
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
