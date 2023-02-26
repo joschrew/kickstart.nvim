@@ -27,3 +27,8 @@ vim.keymap.set('n', '<leader>g', require('telescope.builtin').live_grep, { desc 
 vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles 2' })
 
 vim.o.colorcolumn="101"
+
+-- <C-h> is also neccessary, no idea why
+vim.keymap.set('i', '<C-BS>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 1'})
+vim.keymap.set('i', '<C-h>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 2'})
+vim.keymap.set('i', '<C-Del>', '<C-O>dw', { desc = 'Delete word in insert mode with Ctrl Del'})
