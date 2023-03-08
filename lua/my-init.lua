@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<Home>', function()
+vim.keymap.set({'n', 'i'}, '<Home>', function()
     local _,c = unpack(vim.api.nvim_win_get_cursor(0))
     vim.cmd('normal! ^')
     local _,c1 = unpack(vim.api.nvim_win_get_cursor(0))
