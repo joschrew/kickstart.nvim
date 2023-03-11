@@ -32,3 +32,6 @@ vim.o.colorcolumn="101"
 vim.keymap.set('i', '<C-BS>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 1'})
 vim.keymap.set('i', '<C-h>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 2'})
 vim.keymap.set('i', '<C-Del>', '<C-O>dw', { desc = 'Delete word in insert mode with Ctrl Del'})
+
+require('lush_theme.roy-colors')
+vim.cmd.colorscheme 'roy-colors'
