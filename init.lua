@@ -116,7 +116,7 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'onedark'
     end,
   },
 
@@ -411,7 +411,26 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  pyright = {},
+  -- pyright = {},
+  pylsp = {
+    pylsp = {
+      configurationSources = { "flake8" },
+      plugins = {
+        flake8 = {
+          enabled = true
+        },
+        pyflakes = {
+          enabled = false
+        },
+        pycodestyle = {
+          enabled = false
+        },
+        mccabe = {
+          enabled = false
+        }
+      }
+    }
+  },
   rust_analyzer = {},
   -- tsserver = {},
 
