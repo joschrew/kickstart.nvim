@@ -11,6 +11,7 @@ vim.keymap.set('n', '<C-S>', ':w<CR>', { silent = true, desc = 'Save with ctrl +
 vim.keymap.set('i', '<C-S>', '<Esc>:w<CR>', { silent = true, desc = 'Save with ctrl + s in insert mode' })
 vim.keymap.set('n', '<leader>y', '"+y', { desc = 'copy to clipboard' })
 vim.keymap.set('n', '<leader>p', '"+p', { desc = 'paste from clipboard' })
+vim.keymap.set('n', '<C-E>', '<C-I>', { desc = 'jump forward alias' })
 
 -- remove trailing whitespace
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
