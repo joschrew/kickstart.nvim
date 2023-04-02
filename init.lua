@@ -417,7 +417,8 @@ local servers = {
       configurationSources = { "flake8" },
       plugins = {
         flake8 = {
-          enabled = true
+          enabled = true,
+          config = "~/.config/flake8"
         },
         pyflakes = {
           enabled = false
