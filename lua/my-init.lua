@@ -20,12 +20,26 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
       local pos = vim.api.nvim_win_get_cursor(0)
       vim.cmd([[%s/\s\+$//e]])
       vim.api.nvim_win_set_cursor(0, pos)
-    end
+    end,
+    desc = "remove trailing whitespace"
 })
 
--- search with leader g and f in addition to leader sg and sf
-vim.keymap.set('n', '<leader>g', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep 2' })
-vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles 2' })
+vim.keymap.set({'n'}, '<leader>l', function()
+    if vim.api.nvim_get_option('hls') then
+        vim.api.nvim_set_option('hls', false)
+    else
+        if vim.api.nvim_get_current_line() == "" then
+            return
+        end
+        vim.api.nvim_set_option('hls', true)
+        local pos = vim.api.nvim_win_get_cursor(0)
+        vim.cmd('normal! *')
+        vim.api.nvim_win_set_cursor(0, pos)
+    end
+end, { desc = 'highlight word under cursor' })
+
+vim.keymap.set('n', '<leader>g', require('telescope.builtin').live_grep, { desc = 'Alias for [S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Alias for [S]earch [F]iles' })
 
 vim.o.colorcolumn="101"
 
@@ -34,7 +48,7 @@ vim.keymap.set('i', '<C-BS>', '<C-w>', { desc = 'Delete word in insert mode with
 vim.keymap.set('i', '<C-h>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 2'})
 vim.keymap.set('i', '<C-Del>', '<C-O>dw', { desc = 'Delete word in insert mode with Ctrl Del'})
 
-vim.keymap.set('n', '<leader>i', 'ciw', { desc = 'delete word under cursor and switch to insert mode' })
+vim.keymap.set('n', '<leader>i', 'ciw', { desc = 'Alias for ciw' })
 
 require('lush_theme.roy-colors')
 vim.cmd.colorscheme 'roy-colors'
