@@ -49,6 +49,7 @@ vim.keymap.set('i', '<C-h>', '<C-w>', { desc = 'Delete word in insert mode with 
 vim.keymap.set('i', '<C-Del>', '<C-O>dw', { desc = 'Delete word in insert mode with Ctrl Del'})
 
 vim.keymap.set('n', '<leader>i', 'ciw', { desc = 'Alias for ciw' })
+vim.keymap.set('n', '<leader>m', '<C-w>', { desc = 'Alias for Ctrl w' })
 
 require('lush_theme.roy-colors')
 vim.cmd.colorscheme 'roy-colors'
