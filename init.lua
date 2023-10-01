@@ -164,15 +164,13 @@ require('lazy').setup({
     },
   },
 
-  -- { -- Add indentation guides even on blank lines
+  -- {
+  --   -- Add indentation guides even on blank lines
   --   'lukas-reineke/indent-blankline.nvim',
   --   -- Enable `lukas-reineke/indent-blankline.nvim`
   --   -- See `:help indent_blankline.txt`
-  --   opts = {
-  --     char = '┊',
-  --     show_trailing_blankline_indent = false,
-  --     show_first_indent_level = false,
-  --   },
+  --   main = "ibl",
+  --   opts = {},
   -- },
 
   -- "gc" to comment visual regions/lines
@@ -320,6 +318,7 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]resume' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -437,6 +436,17 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
+
+-- document existing key chains
+require('which-key').register({
+  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
+  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+})
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
