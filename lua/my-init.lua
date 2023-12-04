@@ -59,3 +59,5 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
     command = "setlocal tabstop=4"
 })
+
+vim.keymap.set('n', '<leader>cf', ':!cargo fmt<CR><CR>', { desc = 'cargo fmt'})
