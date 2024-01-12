@@ -565,9 +565,29 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
+  pylsp = {
+    pylsp = {
+      configurationSources = { "flake8" },
+      plugins = {
+        flake8 = {
+          enabled = true,
+          config = "~/.config/flake8"
+        },
+        pyflakes = {
+          enabled = false
+        },
+        pycodestyle = {
+          enabled = false
+        },
+        mccabe = {
+          enabled = false
+        }
+      }
+    }
+  },
+  rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
