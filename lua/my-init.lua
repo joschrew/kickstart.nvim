@@ -60,4 +60,10 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "setlocal tabstop=4"
 })
 
+-- set tabwith to 4 for shellscripts
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "sh",
+    command = "setlocal tabstop=4"
+})
+
 vim.keymap.set('n', '<leader>cf', ':!cargo fmt<CR><CR>', { desc = 'cargo fmt'})
