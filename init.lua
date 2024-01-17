@@ -574,7 +574,7 @@ local servers = {
   -- pyright = {},
   pylsp = {
     pylsp = {
-      configurationSources = { "flake8" },
+      configurationSources = { "flake8", "pylsp-mypy" },
       plugins = {
         flake8 = {
           enabled = true,
@@ -588,6 +588,9 @@ local servers = {
         },
         mccabe = {
           enabled = false
+        },
+        pylsp_mypy = {
+          enabled = true
         }
       }
     }
