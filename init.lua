@@ -100,7 +100,18 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
+      {
+        'L3MON4D3/LuaSnip',
+        build = (function()
+          -- Build Step is needed for regex support in snippets
+          -- This step is not supported in many windows environments
+          -- Remove the below condition to re-enable on windows
+          if vim.fn.has 'win32' == 1 then
+            return
+          end
+          return 'make install_jsregexp'
+        end)(),
+      },
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
@@ -193,8 +204,13 @@ require('lazy').setup({
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
+    lazy = false,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      require('onedark').setup {
+        -- Set a style preset. 'dark' is default.
+        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
+      }
+      require('onedark').load()
     end,
   },
 
@@ -205,12 +221,14 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
+        -- jo: no theme setting, I use my own theme 
         component_separators = '|',
         section_separators = '',
       },
     },
   },
 
+  -- jo: This is disabled on purpose
   -- {
   --   -- Add indentation guides even on blank lines
   --   'lukas-reineke/indent-blankline.nvim',
@@ -265,8 +283,8 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+  -- jo: I need this import for my own colorsheme
   { import = 'custom.plugins' },
-
   'rktjmp/lush.nvim',
 }, {})
 
@@ -424,6 +442,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
+    -- jo: 'comment' needed to highlight todo
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'comment' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -510,7 +529,9 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>ca', function()
+    vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
+  end, '[C]ode [A]ction')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -568,8 +589,9 @@ require('mason-lspconfig').setup()
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
-local servers = {
+local servers = { 
   -- clangd = {},
+  -- jo: I have my custom server settings for python. no pyright
   gopls = {},
   -- pyright = {},
   pylsp = {
@@ -658,6 +680,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
+      -- jo: select is annoying
       select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
