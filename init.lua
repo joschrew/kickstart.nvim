@@ -543,6 +543,32 @@ require('lazy').setup {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        -- mychanges: lsp config
+        gopls = {},
+        pylsp = {
+          pylsp = {
+            configurationSources = { 'flake8', 'pylsp-mypy' },
+            plugins = {
+              flake8 = {
+                enabled = true,
+                config = '~/.config/flake8',
+              },
+              pyflakes = {
+                enabled = false,
+              },
+              pycodestyle = {
+                enabled = false,
+              },
+              mccabe = {
+                enabled = false,
+              },
+              pylsp_mypy = {
+                enabled = true,
+              },
+            },
+          },
+        },
+        rust_analyzer = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -815,7 +841,12 @@ require('lazy').setup {
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
+  -- mychanges: lush required for roy-colors
+  'rktjmp/lush.nvim',
 }
+
+-- mychanges: add own additions from separate file
+require 'my-init'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
