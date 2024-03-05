@@ -43,9 +43,9 @@ vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc
 
 vim.o.colorcolumn = '101'
 
--- <C-h> is also neccessary, no idea why
+-- <C-h> is what really maps Ctrl + Backspace because that's what the terminal sends to the editor
 vim.keymap.set('i', '<C-BS>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 1' })
---vim.keymap.set('i', '<C-h>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 2'})
+vim.keymap.set('i', '<C-h>', '<C-w>', { desc = 'Delete word in insert mode with Ctrl Backspace part 2' })
 vim.keymap.set('i', '<C-Del>', '<C-O>dw', { desc = 'Delete word in insert mode with Ctrl Del' })
 
 vim.keymap.set('n', '<leader>i', 'ciw', { desc = 'Alias for ciw' })
