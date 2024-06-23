@@ -54,15 +54,9 @@ vim.keymap.set('n', '<leader>m', '<C-w>', { desc = 'Alias for Ctrl w' })
 require 'lush_theme.roy-colors'
 vim.cmd.colorscheme 'roy-colors'
 
--- set tabwith to 4 for golang
+-- set tabwith to 4 for some files
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'go',
-  command = 'setlocal tabstop=4',
-})
-
--- set tabwith to 4 for shellscripts
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'sh',
+  pattern = { 'go', 'java', 'sh' },
   command = 'setlocal tabstop=4',
 })
 
