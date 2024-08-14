@@ -664,7 +664,8 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        -- mychanges: format with fm to keep f for search files
+        '<leader>fm',
         function()
           require('conform').format { async = true, lsp_fallback = true }
         end,
