@@ -62,3 +62,5 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.keymap.set('n', '<leader>cf', ':!cargo fmt<CR><CR>', { desc = 'cargo fmt' })
+vim.keymap.set('n', '<leader>p', '"0p', { desc = 'Alias for put register 0' })
+vim.keymap.set('n', '<leader>P', '"0P', { desc = 'Alias for Put register 0 before cursor' })
