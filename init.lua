@@ -584,6 +584,24 @@ do
 
   -- Shortcut for searching your Neovim configuration files
   vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config', follow = true } end, { desc = '[S]earch [N]eovim files' })
+
+  -- mychanges: telescope-file browser
+  vim.pack.add { gh 'nvim-telescope/telescope-file-browser.nvim' }
+  vim.keymap.set("n", "<space>b", ":Telescope file_browser path=%:p:h<CR>")
+  local fb_actions = require "telescope".extensions.file_browser.actions
+  require('telescope').setup {
+    extensions = {
+      file_browser = {
+        mappings = {
+          ["i"] = {
+            ["<C-d>"] = fb_actions.remove
+          }
+        }
+      }
+    }
+  }
+  require("telescope").load_extension("file_browser")
+
 end
 
 -- ============================================================
@@ -790,7 +808,7 @@ do
       -- You can specify filetypes to autoformat on save here:
       local enabled_filetypes = {
         -- mychanges: autoformat golang code
-        go = true, 
+        go = true,
         -- lua = true,
         -- python = true,
       }
@@ -805,9 +823,10 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
-      -- mychanges: use goimport for formatting golang
+      -- mychanges: formatters used on demand with command in vim (<leader>fm, defined below)
       go = { 'goimports' },
-      -- rust = { 'rustfmt' },
+      python = { 'ruff_format' },
+      rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
