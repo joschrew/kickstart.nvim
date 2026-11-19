@@ -543,6 +543,10 @@ do
     --   },
     -- },
     -- pickers = {}
+    -- mychanges: telescope smart path display
+    defaults = {
+      path_display = { "smart" },
+    },
     extensions = {
       ['ui-select'] = { require('telescope.themes').get_dropdown() },
     },
